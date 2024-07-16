@@ -19,7 +19,7 @@ input_format = {
 }
 
 def generate_json(json_filepath):
-    with jsonlines.open(json_filepath, mode="w") as f:
+    with jsonlines.open(json_filepath, mode="w") as f:   # change the filepath or add loop to fit your file structure
         data = input_format
         data["text"] = f"{generate_lyrics(textgrid_filepath)}"
         data["ph_seq"] = f"{generate_phones(textgrid_filepath)}"
@@ -97,6 +97,6 @@ def generate_duration(textgrid_filepath, wav_filepath):
     return result
 
 if __name__ == "__main__":
-    textgrid_filepath = r"C:\Users\86188\Documents\MFA\align_output\被无声的时间__28.TextGrid"
-    wav_filepath = r"C:\Users\86188\Desktop\LRC_ms3_After\被无声的时间__28.wav"
-    generate_json(json_filepath=r"C:\Users\86188\PycharmProjects\Generate_Cut\test.json")
+    textgrid_filepath = r"C:\Users\86188\Documents\MFA\align_output\被无声的时间__28.TextGrid" # change the filepath to yours
+    wav_filepath = r"C:\Users\86188\Desktop\LRC_ms3_After\被无声的时间__28.wav"    # change the filepath to yours
+    generate_json(json_filepath=r"C:\Users\86188\PycharmProjects\Generate_Cut\test.json")    # change the filepath to yours
