@@ -6,7 +6,9 @@ from pathlib import Path
 import numpy as np
 import librosa
 import textgrid
+
 tg = textgrid.TextGrid()
+
 input_format = {
     "text": "",
     "ph_seq": "",
@@ -94,72 +96,7 @@ def generate_duration(textgrid_filepath, wav_filepath):
     result = ' '.join(duration_list)
     return result
 
-# def generate_note(textgrid_filepath, wav_filepath): #Textgrid_filepath and .wav_filepath
-#     tg.read(textgrid_filepath)
-#     audio_data, sample_rate = librosa.load(wav_filepath, sr=44100)
-#     f0, voiced_flag, voiced_idx = librosa.pyin(audio_data, fmin=100, fmax=1000, sr=sample_rate)
-#     word_durations = {}
-#     word_median_note = {}
-#     words_tier = tg.getFirst('words')
-#     for interval in words_tier.intervals:
-#         word = interval.mark
-#         start_time = interval.minTime
-#         end_time = interval.maxTime
-#         duration = end_time - start_time
-#         word_f0 = f0[int(start_time * sample_rate // 512):int(end_time * sample_rate // 512)]
-#         median_f0 = np.nanmedian(word_f0)
-#         if len(word_f0) > 0:
-#             median_f0 = np.nanmedian(word_f0)
-#             median_note = librosa.hz_to_note(median_f0) if not np.isnan(median_f0) else "rest"
-#         else:
-#             median_f0 = float('nan')
-#             median_note = "rest"
-#         word_median_note[word] = median_note
-#         median_note = word_median_note[word]
-#
-#     note_list = []
-#     for word, duration in word_durations.items():
-#         median_note = word_median_note[word]
-#         note_list.append(median_note)
-#     result = ' '.join(note_list)
-#     return result
-#
-#
-# def generate_duration(textgrid_filepath, wav_filepath):  # Textgrid_filepath and .wav_filepath
-#     tg.read(textgrid_filepath)
-#     audio_data, sample_rate = librosa.load(wav_filepath, sr=44100)
-#     f0, voiced_flag, voiced_idx = librosa.pyin(audio_data, fmin=100, fmax=1000, sr=sample_rate)
-#     word_durations = {}
-#     word_median_note = {}
-#     words_tier = tg.getFirst('words')
-#     for interval in words_tier.intervals:
-#         word = interval.mark
-#         start_time = interval.minTime
-#         end_time = interval.maxTime
-#         duration = end_time - start_time
-#
-#         word_f0 = f0[int(start_time * sample_rate // 512):int(end_time * sample_rate // 512)]
-#         median_f0 = np.nanmedian(word_f0)
-#         if len(word_f0) > 0:
-#             median_f0 = np.nanmedian(word_f0)
-#             median_note = librosa.hz_to_note(median_f0) if not np.isnan(median_f0) else "rest"
-#         else:
-#             median_f0 = float('nan')
-#             median_note = "rest"
-#
-#         word_durations[word] = duration
-#         word_median_note[word] = median_note
-#
-#     duration_list = []
-#     for word, duration in word_durations.items():
-#         duration_str = f"{duration:.6f}"
-#         duration_list.append(duration_str)
-#     result = ' '.join(duration_list)
-#     return result
-
 if __name__ == "__main__":
     textgrid_filepath = r"C:\Users\86188\Documents\MFA\align_output\被无声的时间__28.TextGrid"
     wav_filepath = r"C:\Users\86188\Desktop\LRC_ms3_After\被无声的时间__28.wav"
     generate_json(json_filepath=r"C:\Users\86188\PycharmProjects\Generate_Cut\test.json")
-
-
