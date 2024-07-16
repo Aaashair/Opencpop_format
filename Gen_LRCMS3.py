@@ -3,9 +3,9 @@ from pydub import AudioSegment
 from pypinyin import pinyin, lazy_pinyin, Style
 import glob
 
-output_dir = r"C:\Users\86188\Desktop\LRC_ms3_After"
+output_dir = r"C:\Users\86188\Desktop\LRC_ms3_After"    # change the filepath to yours
 
-audio_files = glob.glob("C:/Users/86188/Desktop/LRC_ms3_Before/*/*.wav")
+audio_files = glob.glob("C:/Users/86188/Desktop/LRC_ms3_Before/*/*.wav")    # change the filepath to yours
 
 
 for audio_file in audio_files:
@@ -25,9 +25,6 @@ for audio_file in audio_files:
     m = t[:2]
     s = t[3:5]
     ms = t[6:]
-    # print(m)
-    # print(s)
-    # print(ms)
     m = int(m)
     s = int(s)
     ms = int(ms)
@@ -42,9 +39,7 @@ for audio_file in audio_files:
 
     for l in a:
         t = l[1:10]
-        # print(t)
         LRC= l[11:]
-        # print(type(LRC))
         txt_file_name = f"{lastLRC.strip()}__{file_count}.txt"
 
 
@@ -65,11 +60,6 @@ for audio_file in audio_files:
         ms = int(ms)
 
         t = m*60*1000+s*1000+ms
-
-        # save_name = "crop_" + str(t) + file_name
-        # save_name = f"crop_{str(t)}_{os.path.basename(txt_file_name.replace('__*', ''))}"
-        # print(save_name)
-        # save_name = os.path.join(output_dir, f"{os.path.splitext(os.path.basename(txt_file_name))[0]}.wav")
 
         wav_file_name = f"{os.path.splitext(txt_file_name)[0]}.wav"
         save_path = os.path.join(output_dir, wav_file_name)
