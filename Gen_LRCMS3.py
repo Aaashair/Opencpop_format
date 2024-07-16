@@ -21,16 +21,6 @@ for audio_file in audio_files:
     a = f.readlines()
 
     l = a[0]
-    t = l[2:10]
-    m = t[:2]
-    s = t[3:5]
-    ms = t[6:]
-    m = int(m)
-    s = int(s)
-    ms = int(ms)
-    t = m * 60 * 1000 + s * 1000 + ms
-
-    last = t
     # crop_audio = sound[:t]
     os.makedirs(output_dir, exist_ok=True)
     file_count = 0
