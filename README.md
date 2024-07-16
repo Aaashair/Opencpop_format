@@ -15,6 +15,6 @@ MFA 所用字典为 mfa_dict/mandarin_pinyin.dict,
 所用声学模型为 mfa_dict/mandarin/mandarin.zip。
 
 注意：
-<AP>, <SP> 还未标注。
-检测 is_slur_seq 还未完成。
+*AP, SP* 还未标注。
+检测 *is_slur_seq* 还未完成。
 mfa_dict/MFA_DICT.txt 为无声调拼音—音素的字典, 正在寻找或 train 一个适配的声学模型。
