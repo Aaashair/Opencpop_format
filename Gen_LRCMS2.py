@@ -4,11 +4,10 @@ import glob
 from pypinyin import pinyin, lazy_pinyin, Style
 
 
-output_dir = r"C:\Users\86188\Desktop\LRC_ms2_After"
-audio_files = glob.glob("C:/Users/86188/Desktop/LRC_ms2_Before/*/*.wav")
+output_dir = r"C:\Users\86188\Desktop\LRC_ms2_After"    # change the filepath to yours
+audio_files = glob.glob("C:/Users/86188/Desktop/LRC_ms2_Before/*/*.wav")    # change the filepath to yours
 
 for audio_file in audio_files:
-    # print(audio_files)
     sound = AudioSegment.from_wav(audio_file)
     the_file = os.path.basename(audio_file)
     (the_file_name, the_file_format) = os.path.splitext(the_file)
@@ -20,18 +19,6 @@ for audio_file in audio_files:
     a = f.readlines()
 
     l = a[0]
-    # t = l[1:9]
-    # m = t[:2]
-    # s = t[3:5]
-    # ms = t[6:]
-    # print(m)
-    # print(s)
-    # print(ms)
-    # m = int(m)
-    # s = int(s)
-    # ms = int(ms)
-    # t = m * 60 * 1000 + s * 1000 + ms
-
     last = 0
     # crop_audio = sound[:t]
     os.makedirs(output_dir, exist_ok=True)
@@ -41,9 +28,7 @@ for audio_file in audio_files:
 
     for l in a:
         t = l[1:9]
-        # print(t)
         LRC= l[10:]
-        # print(type(LRC))
         txt_file_name = f"{lastLRC.strip()}__{file_count}.txt"
 
         lyrics_file = open(os.path.join(output_dir, txt_file_name), "w", encoding="utf-8")
@@ -60,12 +45,7 @@ for audio_file in audio_files:
         m = int(m)
         s = int(s)
         ms = int(ms)
-
         t = m*60*1000+s*1000+ms
-
-        # save_name = "crop_" + str(t) + file_name
-        # save_name = f"crop_{str(t)}_{os.path.basename(txt_file_name.replace('__*', ''))}"
-        # print(save_name)
 
         save_name = os.path.join(output_dir, f"{os.path.splitext(os.path.basename(txt_file_name))[0]}.wav")
         sound[last:t].export(save_name, format="wav", tags={'album': os.path.basename(output_dir)})
